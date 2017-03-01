@@ -48,7 +48,7 @@ void loop() {
 }
 
 void display_message(String message){
-   for ( int i = 0 ; i < width * message.length() + matrix.width() - 1 - spacer; i++ ) {
+   for ( int i = 0 ; i < width * message.length() + matrix.width() - spacer; i++ ) {
     //matrix.fillScreen(LOW);
     int letter = i / width;
     int x = (matrix.width() - 1) - i % width;
