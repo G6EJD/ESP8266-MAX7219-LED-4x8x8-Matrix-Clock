@@ -1,3 +1,8 @@
+#ifdef ESP32
+  #include <WiFi.h>
+#else
+  #include <ESP8266WiFi.h>
+#endif
 #include <SPI.h>
 #include <Adafruit_GFX.h>
 #include <Max72xxPanel.h>
@@ -23,7 +28,9 @@ int spacer = 1;
 int width  = 5 + spacer; // The font width is 5 pixels
 
 void setup() {
+  WiFi.begin(ssid,password);
   configTime(0 * 3600, 0, "pool.ntp.org", "time.nist.gov");
+  setenv("TZ", "GMT0BST,M3.5.0/01,M10.5.0/02",1);
   matrix.setIntensity(0); // Use a value between 0 and 15 for brightness
   matrix.setRotation(0, 1);    // The first display is position upside down
   matrix.setRotation(1, 1);    // The first display is position upside down
