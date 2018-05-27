@@ -28,6 +28,7 @@ int spacer = 1;
 int width  = 5 + spacer; // The font width is 5 pixels
 
 void setup() {
+  Serial.begin(115200);
   WiFi.begin(ssid,password);
   configTime(0 * 3600, 0, "pool.ntp.org", "time.nist.gov");
   setenv("TZ", "GMT0BST,M3.5.0/01,M10.5.0/02",1);
@@ -43,6 +44,7 @@ void loop() {
   time_t now = time(nullptr);
   String time = String(ctime(&now));
   time.trim();
+  Serial.println(time);
   time.substring(11,19).toCharArray(time_value, 10); 
   matrix.drawChar(2,0, time_value[0], HIGH,LOW,1); // H
   matrix.drawChar(8,0, time_value[1], HIGH,LOW,1); // HH
